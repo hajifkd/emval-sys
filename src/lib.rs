@@ -17,8 +17,8 @@ pub type EM_GENERIC_WIRE_TYPE = f64;
 #[allow(non_camel_case_types)]
 pub type EM_VAR_ARGS = *const ::std::os::raw::c_void;
 
-const _EMVAL_UNDEFINED: EM_VAL = 1 as _;
-const _EMVAL_NULL: EM_VAL = 2 as _;
+pub const _EMVAL_UNDEFINED: EM_VAL = 1 as _;
+pub const _EMVAL_NULL: EM_VAL = 2 as _;
 
 extern "C" {
     pub fn _emval_incref(value: EM_VAL);
