@@ -17,8 +17,12 @@ pub type EM_GENERIC_WIRE_TYPE = f64;
 #[allow(non_camel_case_types)]
 pub type EM_VAR_ARGS = *const ::std::os::raw::c_void;
 
+pub type GenericFunction = *const ::std::os::raw::c_void;
+
 pub const _EMVAL_UNDEFINED: EM_VAL = 1 as _;
 pub const _EMVAL_NULL: EM_VAL = 2 as _;
+pub const _EMVAL_TRUE: EM_VAL = 3 as _;
+pub const _EMVAL_FALSE: EM_VAL = 4 as _;
 
 extern "C" {
     pub fn _emval_incref(value: EM_VAL);
@@ -126,4 +130,13 @@ extern "C" {
 extern "C" {
     pub fn _embind_register_emval(emvalType: TYPEID,
                                   name: *const ::std::os::raw::c_char);
+}
+
+extern "C" {
+    pub fn _embind_register_function(name: *const ::std::os::raw::c_char,
+                                     argCount: ::std::os::raw::c_uint,
+                                     argTypes: *const TYPEID,
+                                     signature: *const ::std::os::raw::c_char,
+                                     invoker: GenericFunction,
+                                     function: GenericFunction);
 }
